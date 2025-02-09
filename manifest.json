@@ -2,7 +2,7 @@
     "name": "Matters",
     "short_name": "Matters",
     "lang": "de-DE",
-    "start_url": "/Matters",
+    "start_url": "/Matters/app.html",
     "display": "standalone",
     "theme_color": "mintcream",
     "background_color": "mintcream",
