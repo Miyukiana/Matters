@@ -1,0 +1,86 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+html{
+  scroll-padding: 175px;
+  scroll-behavior: smooth;
+}
+a.active {
+  background-color: green;
+}
+a:hover {
+  background-color: green;
+  border-radius: 20px;
+}
+body {
+  max-width: min(600px, 80dvw);
+  margin: 30px auto;
+  background-color: mintcream;
+  color: black;
+}/*
+.home{
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}*/
+.cat{
+  text-align: center;
+}
+.horse{
+  margin-top: 50px;
+}
+.start{
+  background-color: white;
+  text-align: center;
+}
+#dog{
+  margin-top: 50px;
+}
+h2{
+  color: yellowgreen;
+  text-align: center;
+}
+.class{
+  color: green;
+}
+img{
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  float: right;
+  box-shadow: 5px 5px 5px yellowgreen, 5px 5px 5px yellowgreen, 5px 5px 5px yellowgreen, 5px 5px 5px yellowgreen; 
+}
+h1{
+  color: yellowgreen;
+  
+}
+h3{
+  color: yellowgreen;
+}
+a{
+  border-radius: 30px;
+  padding: 5px;
+  border: solid 1px;
+  color: black;
+  text-decoration: none;
+  margin: 0 5px 0 5px;
+  background-color: rgb(200,230,100)
+}
+p{
+  margin: 30px 0 0 0;
+}
+header{
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: mintcream;
+  border-bottom: solid 1px yellowgreen;
+  padding-bottom: 15px;
+  padding-top: -5px;
+}
+h4{
+  color: yellowgreen;
+}
