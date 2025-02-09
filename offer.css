@@ -1,0 +1,51 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+a.active {
+  background-color: green; 
+}
+a:hover {
+  background-color: green;
+  border-radius: 20px;
+}
+h1{
+  color: yellowgreen;
+}
+body{
+  background-color: mintcream;
+    max-width: min(600px, 80dvw);
+  margin: 30px auto;
+  color: black;
+}
+ol{
+  border: solid 1px black;
+  border-radius: 10px;
+  background-color: rgb(200,230,100)
+}
+img{
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  float: right;
+    box-shadow: 5px 5px 5px yellowgreen, 5px 5px 5px yellowgreen, 5px 5px 5px yellowgreen, 5px 5px 5px yellowgreen; 
+}
+a{
+  border-radius: 30px;
+  padding: 5px;
+  border: solid 1px;
+  color: black;
+  text-decoration: none;
+  margin: 0 5px 0 5px;
+  background-color: rgb(200,230,100)
+}
+h1{
+  color: yellowgreen;
+  
+}
+p{
+  margin: 30px 0 0 0;
+}
+h3{
+  color: yellowgreen;
+}
+  
