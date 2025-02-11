@@ -1,0 +1,585 @@
+
+//filepath: src\pages\create.jsx
+import RequestAuth from "../components/request-auth";
+import React from "react";
+
+export default function Create() {
+  const isLoggedIn = false;
+
+  if (!isLoggedIn) return <RequestAuth />;
+
+  return (
+    <div>
+      <h3>Erstelle Reisen und Inhalte</h3>
+      <p>Kommt bald....</p>
+    </div>
+  );
+}
+
+
+//filepath: src\pages\home.jsx
+import React from "react";
+import { Link } from "react-router-dom";
+
+export default function Home() {
+  const isLoggedIn = false; // Update based on actual login state
+
+  return (
+    <div className="container py-5">
+      <header className="hero-header text-center mb-4">
+        <h1 className="display-4 text-white">
+          Erstelle Reisen, Poste und Spare Zeit!
+        </h1>
+        <p className="lead text-white">
+          Entdecke, erstelle und teile unvergessliche Reiseerlebnisse.
+        </p>
+      </header>
+
+      {!isLoggedIn && (
+        <section className="mb-5">
+          <h5 className="text-center">
+            Du hast noch kein Konto?{" "}
+            <Link to="/profile/create-account" className="btn btn-link">
+              Account Erstellen
+            </Link>{" "}
+            oder{" "}
+            <Link to="/profile/login" className="btn btn-link">
+              Anmelden
+            </Link>
+          </h5>
+        </section>
+      )}
+      <br />
+      <section className="mb-4">
+        <ul className="list-group">
+          <li className="list-group-item">
+            <Link to="/search" className="btn btn-outline-primary w-100">
+              Nach Reisen suchen
+            </Link>
+          </li>
+          <li className="list-group-item">
+            <Link to="/search" className="btn btn-outline-primary w-100">
+              Nutzer finden
+            </Link>
+          </li>
+          {isLoggedIn && (
+            <>
+              <li className="list-group-item">
+                <Link to="/profile" className="btn btn-outline-primary w-100">
+                  Dein Profil bearbeiten
+                </Link>
+              </li>
+              <li className="list-group-item">
+                <Link
+                  to="/create-journey"
+                  className="btn btn-outline-primary w-100"
+                >
+                  Reisen erstellen
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+
+//filepath: src\pages\joureny.jsx
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+import { Carousel } from "react-bootstrap"; // You can use any carousel library
+import useFetch from "../hooks/use-fetch";
+import getUrl from "../utils/get-url";
+import LoadingSpinner from "../components/loading-spinner";
+
+export default function Journey() {
+  const { id } = useParams(); // Assuming the ID is passed via the URL
+
+  // State to store the journey data
+  const [journey, state] = useFetch(getUrl(`/journey/${id}`));
+
+  if (state == "error") {
+    return (
+      <div>
+        Fehler beim Laden der Reisedaten{" "}
+        <a
+          href=""
+          onClick={(e) => {
+            e.preventDefault();
+            location.reload();
+          }}
+        >
+          Neu laden
+        </a>
+      </div>
+    );
+  }
+
+  if (!journey) {
+    return <LoadingSpinner />; //<div>Loading...</div>; // You can show a loading spinner or message
+  }
+
+  const images = journey.images || [];
+  const description = journey.description || "";
+  const price = journey.price;
+  const title = journey.title;
+  const author = journey.author || "";
+  const contactEmail = journey.contactEmail || "";
+  const contactPhone = journey.contactPhone || "";
+  const bookingTime = journey.bookingTime || "Unbestimmt";
+
+  const renderDescription = () => {
+    return description.split("\n").map((line, index) => (
+      <p key={index}>
+        {line.split(" ").map((word, idx) => {
+          const emailRegex =
+            /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/;
+          const phoneRegex =
+            /(?:\+?\d{1,4}[^\d\s]?)?(\(?\d+\)?[\s-]?)?[\d\s-]{5,}/;
+          const urlRegex = /https?:\/\/[^\s]+/; // Regex to match URLs starting with http:// or https://
+
+          if (emailRegex.test(word)) {
+            return (
+              <a href={`mailto:${word}`} key={idx}>
+                {word}
+              </a>
+            );
+          }
+
+          if (phoneRegex.test(word)) {
+            return (
+              <a href={`tel:${word}`} key={idx}>
+                {word}
+              </a>
+            );
+          }
+
+          if (urlRegex.test(word)) {
+            return (
+              <a
+                href={word}
+                key={idx}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {word}
+              </a>
+            );
+          }
+
+          return word + " ";
+        })}
+      </p>
+    ));
+  };
+
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <h1>{title}</h1>
+          <h3>{price} €</h3>
+
+          {/* Image slider */}
+          <Carousel>
+            {images.map((image, index) => (
+              <Carousel.Item key={index}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="d-block w-100"
+                  style={{ maxHeight: "400px", objectFit: "cover" }}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+
+          <div className="mt-4">
+            <h4>Beschreibung:</h4>
+            {renderDescription()}
+          </div>
+
+          {/* Author Link */}
+          <p>
+            <strong>Autor:</strong>{" "}
+            <Link to={`/profile/${author.id}`} className="btn-link">
+              {author.name}
+            </Link>
+          </p>
+
+          {/* Contact Information */}
+          <p>
+            <strong>Email:</strong>{" "}
+            <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+          </p>
+          <p>
+            <strong>Telefon:</strong>{" "}
+            <a href={`tel:${contactPhone}`}>{contactPhone}</a>
+          </p>
+
+          {/* Booking Information */}
+          <p>
+            <strong>Buchbar bis:</strong> {bookingTime}
+          </p>
+
+          {/* Booking Button */}
+          <div className="text-center mt-4">
+            <Link to={`/book/${id}`} className="btn btn-primary">
+              Jetzt buchen
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+//filepath: src\pages\page-not-found.jsx
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+export default function PageNotFound() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [secounds, setSecounds] = useState(30);
+
+  useEffect(() => {
+    const timeOut = setInterval(
+      () =>
+        setSecounds((secounds) => {
+          if (secounds == 0) {
+            clearInterval(timeOut);
+            navigate("/");
+          }
+          return secounds - 1;
+        }),
+      1000
+    );
+    return () => clearInterval(timeOut);
+  }, []);
+
+  return (
+    <div>
+      <h3>Seite existiert nicht</h3>
+      <h4>404 Page not found</h4>
+      <i>{location.pathname}</i>
+      <h6>
+        <Link to="/">zur Startseite</Link>
+      </h6>{" "}
+      <i>(sie werden in unter {secounds} Sekunden zur Startseite navigiert)</i>
+    </div>
+  );
+}
+
+
+//filepath: src\pages\profile\create-account.jsx
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+
+export default function CreateAccount() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!username || !password) {
+      setError("Benutzername und Passwort sind erforderlich.");
+      return;
+    }
+
+    // Perform account creation logic here
+    console.log("Konto erstellt:", { username, password });
+    setError(""); // Clear the error on success
+  };
+
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
+              <h3 className="card-title text-center mb-4">Konto erstellen</h3>
+
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="username" className="form-label">
+                    Benutzername
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">
+                    Passwort
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+
+                <div className="d-grid">
+                  <button type="submit" className="btn btn-primary">
+                    Konto erstellen
+                  </button>
+                </div>
+              </form>
+
+              <div className="mt-3 text-center">
+                <NavLink to="/profile/create-account" className="btn">
+                  Konto erstellen
+                </NavLink>
+                <NavLink to="/profile/login" className="btn">
+                  Login
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+//filepath: src\pages\profile\login.jsx
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!username || !password) {
+      setError("Benutzername und Passwort sind erforderlich.");
+      return;
+    }
+
+    // Perform login logic here
+    console.log("Login erfolgreich:", { username, password });
+    setError(""); // Clear the error on success
+  };
+
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
+              <h3 className="card-title text-center mb-4">Anmelden</h3>
+
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="username" className="form-label">
+                    Benutzername
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">
+                    Passwort
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+
+                <div className="d-grid">
+                  <button type="submit" className="btn btn-primary">
+                    Anmelden
+                  </button>
+                </div>
+              </form>
+
+              <div className="mt-3 text-center">
+                <NavLink to="/profile/create-account" className="btn">
+                  Konto erstellen
+                </NavLink>
+                <NavLink to="/profile/login" className="btn">
+                  Login
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+
+//filepath: src\pages\profile.jsx
+import RequestAuth from "../components/request-auth";
+import React from "react";
+
+export default function Profile() {
+  const isLoggedIn = false;
+  if (!isLoggedIn) return <RequestAuth />;
+  return <div>Profile Page</div>;
+}
+
+//filepath: src\pages\request-auth.jsx
+import RequestAuth from "../components/request-auth";
+
+export default function RequestAuthPage() {
+  return <RequestAuth />;
+}
+
+//filepath: src\pages\search.jsx
+import React, { useState } from "react";
+import { NavLink, useSearchParams } from "react-router-dom";
+import LoadingSpinner from "../components/loading-spinner";
+import useFetch from "../hooks/use-fetch";
+import getUrl from "../utils/get-url";
+import BestJourneys from "../components/best-journeys";
+
+export default function SearchJourneys() {
+  const [_searchTerm, _setSearchTerm] = useSearchParams({ search: "" });
+  const [searchTerm, setSearchTerm] = [
+    _searchTerm.get("search"),
+    (data) => _setSearchTerm({ search: data }),
+  ];
+  const [visibleCount, setVisibleCount] = useState(6); // Number of items to render initially
+  const [journeys, state] = useFetch(
+    getUrl(`/search-journeys`, {
+      search: searchTerm,
+    }),
+    []
+  );
+
+  const filteredJourneys = journeys.filter((journey) => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      journey.title.toLowerCase().includes(searchLower) ||
+      journey.location.toLowerCase().includes(searchLower) ||
+      journey.price.toLowerCase().includes(searchLower)
+    );
+  });
+
+  const visibleJourneys = filteredJourneys.slice(0, visibleCount);
+
+  const handleViewMore = () => {
+    setVisibleCount((prevCount) => prevCount + 6); // Increment by 6 or any number
+  };
+
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <input
+            autoFocus
+            type="text"
+            className="form-control mb-4"
+            placeholder="Suche nach Reisen/Orten/Preisen..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value.trim())}
+          />
+          <div className="row">
+            <div style={{ display: !searchTerm && "none" }}>
+              <BestJourneys />
+            </div>
+            <h3>Suchergebnisse</h3>
+            {state == "error" && (
+              <div>
+                Fehler beim Laden der Reisen{" "}
+                <a
+                  href=""
+                  onClick={(e) => {
+                    e.preventDefault();
+                    location.reload();
+                  }}
+                >
+                  Neu laden
+                </a>
+              </div>
+            )}
+            {state == "loading" && <LoadingSpinner />}
+            {visibleJourneys == 0 && <p>keine Ergebnisse für diese Suche</p>}
+            {visibleJourneys.map((journey) => (
+              <div key={journey.id} className="col-md-4 mb-4">
+                <div className="card">
+                  <img
+                    src={journey.coverImage}
+                    className="card-img-top"
+                    alt={journey.title}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{journey.title}</h5>
+                    <p className="card-text">Ort: {journey.location}</p>
+                    <p className="card-text">Preis: {journey.price}</p>
+                    <NavLink
+                      to={`/journey/${journey.id}`}
+                      className="btn btn-primary"
+                    >
+                      Details anzeigen
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {visibleCount < filteredJourneys.length && (
+            <div className="text-center mt-4">
+              <button onClick={handleViewMore} className="btn btn-secondary">
+                Mehr anzeigen
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+//filepath: src\pages\subscriptions.jsx
+import RequestAuth from "../components/request-auth";
+import React from "react";
+
+export default function Subscriptions() {
+  const isLoggedIn = false;
+  if (!isLoggedIn) return <RequestAuth />;
+  return <div>Subscriptions Page</div>;
+}
