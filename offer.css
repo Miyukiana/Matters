@@ -17,10 +17,12 @@ body{
   margin: 30px auto;
   color: black;
 }
-ol{
-  border: solid 1px black;
+li{
+  border: solid 0.25px black;
   border-radius: 10px;
-  background-color: rgb(200,230,100)
+  background-color: rgb(200,230,100);
+  margin: 1px;
+  padding: 4px;
 }
 img{
   border-radius: 50px;
