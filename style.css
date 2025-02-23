@@ -5,10 +5,10 @@ html{
   scroll-padding: 175px;
   scroll-behavior: smooth;
 }
-a.active {
+a.active, button.active {
   background-color: green;
 }
-a:hover {
+a:hover, button:hover {
   background-color: green;
   border-radius: 20px;
 }
@@ -60,7 +60,7 @@ h1{
 h3{
   color: yellowgreen;
 }
-a{
+a, button{
   border-radius: 30px;
   padding: 5px;
   border: solid 1px;
