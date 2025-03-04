@@ -81,9 +81,11 @@ h4{
 a.active, button.active {
   background-color: cadetblue;
     color: white;
+    border: solid 1px black;
 }
 a:hover, button:hover {
   background-color: cadetblue;
   border-radius: 20px;
     color: white;
+    border: solid 1px black;
 }
