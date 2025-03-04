@@ -99,60 +99,41 @@
       <p>Effektiv.</p>
     </h2>
   </div>
-
-  <section id="about">
-    <h3>Über uns</h3>
-    <p>Matters unterstützt Ihre Gesundheit mit wissenschaftlich fundierten Inhalten für mentale und körperliche Gesundheit.</p>
-  </section>
-
-  <section id="Angebote">
-    <h3>Unsere Angebote</h3>
-    <p>Pro-Abonnement: 19,99€ / Monat (239,88€/Jahr)</p>
-    <ol>
-      <li>Personalisierter Zielepfad</li>
-      <li>Werbefrei</li>
-      <li>Tägliche Motivation</li>
-      <li>Erstberatung durch Therapeuten</li>
-    </ol>
-  </section>
-
-  <section id="FAQ">
-    <h3>FAQ</h3>
-  </section>
-
-  <script>
-    document.getElementById("installButton").addEventListener("click", function() {
-      document.getElementById("installInstructions").style.display = "block";
-    });
-
-    document.querySelectorAll("a").forEach((a) => {
-      if (a.href.includes("https://app.adjust.com/")) {
-        a.style.display = "none";
-      }
-      if (a.href === document.location.href) {
-        a.classList.add("active");
-      }
-    });
-
-    let deferredPrompt;
-    const installButton = document.getElementById("installButton");
-
-    window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault();
-      deferredPrompt = event;
-      installButton.style.display = "block";
-    });
-
-    installButton.addEventListener("click", async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === "accepted") {
-          console.log("User installed the app");
-        }
-        deferredPrompt = null;
-      }
-    });
-  </script>
-</body>
+    <section id="about">
+      <h3 class="color">Über uns</h3>
+      <p>
+        Ärzte und Psychologen sind überlastet, und viele Menschen leiden an mentalen und körperlichen Erkrankungen. <em style="color: yellowgreen">Matters</em> unterstützt Ihre Gesundheit in beiden Bereichen mit wissenschaftlich fundierten Inhalten.
+      </p>
+      <p style="color: yellowgreen">Mentale Gesundheit</p>
+      <p>
+        Die App bietet Informationen zu psychischen Erkrankungen, Meditationen und eine psychologische Erstberatung (19,99 €/Monat). Sie vermittelt bei Bedarf an nicht kassenärztliche Therapeuten, führt aber keine Therapie durch.
+      </p>
+      <p style="color: yellowgreen">Körperliche Gesundheit</p>
+      <p>
+        Matters hilft bei gesunder Ernährung mit Rezepten, einer Biblithek die alles rund um ungesunde Inhaltsstoffe enthält und einem KI-basierten Zucker-Scanner. Dieser erkennt versteckten Zucker in Lebensmitteln und erleichtert eine bewusste Ernährung. Tägliche Motivationsimpulse und personalisierte Fitnessziele unterstützen einen gesunden Lebensstil.
+      </p>
+    </section>
+    <section id="Angebote">
+      <h3 class="color">Unsere Angebote</h3>
+      <p>Pro-Abonnement</p>
+      <p>Monatlich: 19,99€ (239,88€/Jahr)</p>
+      <ol>
+        <li>Personalisierter Zielepfad</li>
+        <li>Werbefrei</li>
+        <li>Tägliche Motivation für die Verbesserung <strong>Ihrer</strong> Gesundheit</li>
+        <li>Erstberatung in Geist durch Therapeuten</li>
+      </ol>
+    </section>
+    <section id="FAQ">
+      <h3 class="color">FAQ</h3>
+    </section>
+    <p style="margin-top: 3000px"></p>
+    <script>
+      document.getElementById("installButton").addEventListener("click", function() {
+        document.getElementById("installInstructions").style.display = "block";
+      });
+    </script>
+  </body>
 </html>
+
+  
