@@ -46,8 +46,10 @@ h3{
 }
 a.active {
   background-color: cadetblue; 
+  color: white;
 }
 a:hover {
   background-color: cadetblue;
   border-radius: 20px;
+    color: white;
 }
