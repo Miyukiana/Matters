@@ -5,13 +5,7 @@ html{
   scroll-padding: 175px;
   scroll-behavior: smooth;
 }
-a.active, button.active {
-  background-color: green;
-}
-a:hover, button:hover {
-  background-color: green;
-  border-radius: 20px;
-}
+
 body {
   max-width: min(600px, 80dvw);
   margin: 30px auto;
@@ -44,7 +38,7 @@ h2{
   text-align: center;
 }
 .class{
-  color: green;
+  color: cadetblue;
 }
 img{
   border-radius: 50px;
@@ -67,7 +61,7 @@ a, button{
   color: black;
   text-decoration: none;
   margin: 0 5px 0 5px;
-  background-color: rgb(200,230,100)
+  background-color: yellowgreen;
 }
 p{
   margin: 30px 0 0 0;
@@ -83,4 +77,11 @@ header{
 }
 h4{
   color: yellowgreen;
+}
+a.active, button.active {
+  background-color: cadetblue;
+}
+a:hover, button:hover {
+  background-color: cadetblue;
+  border-radius: 20px;
 }
