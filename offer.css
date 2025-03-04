@@ -1,13 +1,7 @@
 * {
   font-family: 'Inter', sans-serif;
 }
-a.active {
-  background-color: green; 
-}
-a:hover {
-  background-color: green;
-  border-radius: 20px;
-}
+
 h1{
   color: yellowgreen;
 }
@@ -20,7 +14,7 @@ body{
 li{
   border: solid 0.25px black;
   border-radius: 10px;
-  background-color: rgb(200,230,100);
+  background-color: yellowgreen;
   margin: 1px;
   padding: 4px;
 }
@@ -38,7 +32,7 @@ a{
   color: black;
   text-decoration: none;
   margin: 0 5px 0 5px;
-  background-color: rgb(200,230,100)
+  background-color: yellowgreen;
 }
 h1{
   color: yellowgreen;
@@ -50,4 +44,10 @@ p{
 h3{
   color: yellowgreen;
 }
-  
+a.active {
+  background-color: cadetblue; 
+}
+a:hover {
+  background-color: cadetblue;
+  border-radius: 20px;
+}
