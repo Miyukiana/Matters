@@ -89,7 +89,7 @@ a:hover{
     color: white;
     border: solid 1px black;
 }
-#installbutton:active, #installbutton:hover{
+#installButton:active, #installButton:hover{
    background-color: cadetblue;
     color: white;
     border: solid 1px black;
