@@ -5,13 +5,7 @@ html{
   scroll-padding: 175px;
   scroll-behavior: smooth;
 }
-a.active, button.active {
-  background-color: green;
-}
-a:hover, button:hover {
-  background-color: green;
-  border-radius: 20px;
-}
+
 body {
   max-width: min(600px, 80dvw);
   margin: 30px auto;
@@ -83,4 +77,15 @@ header{
 }
 h4{
   color: yellowgreen;
+}
+a:active, button:active {
+  background-color: cadetblue;
+    color: white;
+  border: solid 1px black;
+}
+a:hover, button:hover {
+  background-color: cadetblue;
+  border-radius: 20px;
+    color: white;
+   border: solid 1px black;
 }
