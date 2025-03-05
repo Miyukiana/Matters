@@ -2,10 +2,16 @@
   font-family: 'Inter', sans-serif;
 }
 html{
-  scroll-padding: 220px;
+  scroll-padding: 175px;
   scroll-behavior: smooth;
 }
-
+a.active, button.active {
+  background-color: green;
+}
+a:hover, button:hover {
+  background-color: green;
+  border-radius: 20px;
+}
 body {
   max-width: min(600px, 80dvw);
   margin: 30px auto;
@@ -38,7 +44,7 @@ h2{
   text-align: center;
 }
 .class{
-  color: cadetblue;
+  color: green;
 }
 img{
   border-radius: 50px;
@@ -61,7 +67,7 @@ a, button{
   color: black;
   text-decoration: none;
   margin: 0 5px 0 5px;
-  background-color: yellowgreen;
+  background-color: rgb(200,230,100)
 }
 p{
   margin: 30px 0 0 0;
@@ -77,20 +83,4 @@ header{
 }
 h4{
   color: yellowgreen;
-}
-a.active{
-  background-color: cadetblue;
-    color: white;
-    border: solid 1px black;
-}
-a:hover{
-  background-color: cadetblue;
-  border-radius: 20px;
-    color: white;
-    border: solid 1px black;
-}
-#installButton:active, #installButton:hover{
-   background-color: cadetblue;
-    color: white;
-    border: solid 1px black;
 }
