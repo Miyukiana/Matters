@@ -1,104 +1,47 @@
 <!doctype html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Matters</title>
-  
-  <link rel="manifest" href="/Matters/manifest.json">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Matters">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="/Matters/icons/icon-192x192.png">
-  
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="offer.css">
-  <script src="script.js" defer></script>
-  
-  <style>
-    * { font-family: 'Inter', sans-serif; }
-    body {
-      background-color: mintcream;
-      max-width: min(600px, 80dvw);
-      margin: 30px auto;
-      color: black;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      left: 0;
-      background-color: mintcream;
-      border-bottom: solid 1px yellowgreen;
-      padding-bottom: 15px;
-    }
-    h1, h2, h3, h4 { color: yellowgreen; }
-    img {
-      border-radius: 50px;
-      height: 100px;
-      width: 100px;
-      float: right;
-      box-shadow: 5px 5px 5px yellowgreen;
-    }
-    a, button {
-      border-radius: 30px;
-      padding: 5px;
-      border: solid 1px black;
-      color: black;
-      text-decoration: none;
-      margin: 0 5px;
-      background-color: yellowgreen;
-    }
-    a:hover, button:hover {
-      background-color: cadetblue;
-      color: white;
-    }
-    a.active {
-      background-color: cadetblue;
-      color: white;
-      border: solid 1px black;
-    }
-    .cat { text-align: center; }
-    .horse { margin-top: 50px; }
-    #installInstructions {
-      display: none;
-      color: yellowgreen;
-      font-size: 16px;
-      text-align: center;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body class="home">
-  <header>
-    <div class="Platz">
-      <img src="https://manuelwestermeier.github.io/Selina/ideeen-machen-schule/gesundheit/images/hamster-v2.jpg" alt="Logo">
-      <h1><em>Matters</em></h1>
-      <h3>Verändere dein Leben!</h3>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/Matters/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Matters">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/Matters/icons/icon-192x192.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Matters</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="offer.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body class="home">
+    <header>
+      <div class="Platz">
+        <img src="https://manuelwestermeier.github.io/Selina/ideeen-machen-schule/gesundheit/images/hamster-v2.jpg">
+        <p><em><h1>Matters</h1></em></p>
+        <h3>Verändere dein Leben!</h3>
+      </div>
+      <p>
+        <a href="#about">Über uns</a>
+        <a href="#Angebote">Angebote</a>
+        <a href="#FAQ">FAQ</a>
+      </p>
+    </header>
+    <div class="cat">
+      <p id="dog"><a class="start" href="?">Anfangen</a></p>
+      <p><a class="start" href="?">Ich habe schon ein Konto</a></p>
+      <p><button id="installButton">App installieren</button></p>
+      <p id="installInstructions" style="display: none; color: yellowgreen; font-size: 16px; text-align: center; margin-top: 10px;">
+        <strong>iPhone/iPad:</strong> Öffne Safari, tippe auf das Teilen-Symbol und wähle „Zum Home-Bildschirm hinzufügen“. <br>
+        <strong>Android:</strong> Tippe auf „App installieren“ oder wähle „Zum Startbildschirm hinzufügen“ im Browser-Menü.
+      </p>
     </div>
-    <nav>
-      <a href="#about">Über uns</a>
-      <a href="#Angebote">Angebote</a>
-      <a href="#FAQ">FAQ</a>
-    </nav>
-  </header>
-
-  <div class="cat">
-    <p><a class="start" href="?">Anfangen</a></p>
-    <p><a class="start" href="?">Ich habe schon ein Konto</a></p>
-    <p><button id="installButton">App installieren</button></p>
-    <p id="installInstructions">
-      <strong>iPhone/iPad:</strong> Öffne Safari, tippe auf das Teilen-Symbol und wähle „Zum Home-Bildschirm hinzufügen“.<br>
-      <strong>Android:</strong> Tippe auf „App installieren“ oder wähle „Zum Startbildschirm hinzufügen“ im Browser-Menü.
-    </p>
-  </div>
-
-  <div class="horse">
-    <h2>
-      <p>Gesund.</p>
-      <p>Kostenlos.</p>
-      <p>Effektiv.</p>
-    </h2>
-  </div>
+    <div style="margin-bottom: 50px;" class="horse">
+      <h2>
+        <p>Gesund.</p>
+        <p>Kostenlos.</p>
+        <p>Effektiv.</p>
+      </h2>
+    </div>
     <section id="about">
       <h3 class="color">Über uns</h3>
       <p>
@@ -110,7 +53,7 @@
       </p>
       <p style="color: yellowgreen">Körperliche Gesundheit</p>
       <p>
-        Matters hilft bei gesunder Ernährung mit Rezepten, einer Biblithek die alles rund um ungesunde Inhaltsstoffe enthält und einem KI-basierten Zucker-Scanner. Dieser erkennt versteckten Zucker in Lebensmitteln und erleichtert eine bewusste Ernährung. Tägliche Motivationsimpulse und personalisierte Fitnessziele unterstützen einen gesunden Lebensstil.
+        Matters hilft bei gesunder Ernährung mit Rezepten und einem KI-basierten Zucker-Scanner. Dieser erkennt versteckten Zucker in Lebensmitteln und erleichtert eine bewusste Ernährung. Tägliche Motivationsimpulse und personalisierte Fitnessziele unterstützen einen gesunden Lebensstil. Ein KI-gestützter Fragebogen liefert individuelle Empfehlungen. Alle Daten bleiben anonym.
       </p>
     </section>
     <section id="Angebote">
@@ -135,5 +78,3 @@
     </script>
   </body>
 </html>
-
-  
