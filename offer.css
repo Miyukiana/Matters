@@ -1,13 +1,7 @@
 * {
   font-family: 'Inter', sans-serif;
 }
-a.active {
-  background-color: green; 
-}
-a:hover {
-  background-color: green;
-  border-radius: 20px;
-}
+
 h1{
   color: yellowgreen;
 }
@@ -50,4 +44,14 @@ p{
 h3{
   color: yellowgreen;
 }
-  
+a:active {
+  background-color: cadetblue; 
+  color: white;
+   border: solid 1px black;
+}
+a:hover {
+  background-color: cadetblue;
+  border-radius: 20px;
+    color: white;
+   border: solid 1px black;
+}  
