@@ -5,7 +5,12 @@ html{
   scroll-padding: 175px;
   scroll-behavior: smooth;
 }
-
+#installButton{
+  display: flex;
+   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 body {
   max-width: min(600px, 80dvw);
   margin: 30px auto;
